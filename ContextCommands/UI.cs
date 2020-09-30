@@ -15,7 +15,7 @@ namespace ContextCommands
         private static class Constants
         {
             public const int ListWidth = 230;
-            public static readonly Vector2 TextboxSize = new Vector2(500, 150);
+            public static readonly Vector2 TextboxSize = new Vector2(590, 150);
         }
 
         private readonly Plugin _plugin;
@@ -43,7 +43,7 @@ namespace ContextCommands
 
             ImGui.SetNextWindowSize(new Vector2(800, 500), ImGuiCond.Always);
 
-            if (!ImGui.Begin(_plugin.Name, ref _visible))
+            if (!ImGui.Begin(_plugin.Name, ref _visible, ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize))
                 return;
 
             ImGui.Columns(2, "columns", false);
