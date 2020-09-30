@@ -139,10 +139,10 @@ namespace ContextCommands
             }
 
             ImGui.Text("On enter");
-            dirty |= ImGui.InputTextMultiline("##command-config-on-enter", ref selectedItem.Commands.OnEnterCommand, 4096, Constants.TextboxSize);
+            dirty |= ImGui.InputTextMultiline("##command-config-on-enter", ref selectedItem.Commands.OnEnterCommand, CommandSet.CommandsMaxLength, Constants.TextboxSize);
 
             ImGui.Text("On exit");
-            dirty |= ImGui.InputTextMultiline("##command-config-on-exit", ref selectedItem.Commands.OnExitCommand, 4096, Constants.TextboxSize);
+            dirty |= ImGui.InputTextMultiline("##command-config-on-exit", ref selectedItem.Commands.OnExitCommand, CommandSet.CommandsMaxLength, Constants.TextboxSize);
         }
 
         #region Plugin Interface
