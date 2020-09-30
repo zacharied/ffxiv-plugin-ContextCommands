@@ -9,6 +9,7 @@ using Lumina.Excel.GeneratedSheets;
 
 namespace ContextCommands
 {
+    [SuppressMessage("ReSharper", "InvertIf", Justification = "ImGui code is more clear with the regular `if`-statement control flow")]
     internal class Ui
     {
         private static class Constants
@@ -35,7 +36,7 @@ namespace ContextCommands
 
         private void Draw()
         {
-            bool dirty = false;
+            var dirty = false;
 
             if (!Visible)
                 return;

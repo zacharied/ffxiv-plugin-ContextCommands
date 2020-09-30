@@ -23,7 +23,6 @@ namespace ContextCommands
             {
                 if (!_activeContexts.Contains(item.Context) && item.Context.IsActive(_pi))
                 {
-                    PluginLog.Log("Running onEnter");
                     item.Commands.OnEnter(_pi);
                     _activeContexts.Add(item.Context);
                 }
@@ -35,6 +34,6 @@ namespace ContextCommands
             }
         }
 
-        public void FrameworkUpdateEvent(Framework framework) => OnGameStateUpdate();
+        public void FrameworkUpdateEvent(Framework _) => OnGameStateUpdate();
     }
 }
