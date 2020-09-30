@@ -12,7 +12,7 @@ namespace ContextCommands
         public Context Context = new Context();
         public CommandSet Commands = new CommandSet();
 
-        public string Name => $"[{Context.Job?.Abbreviation ?? "Any"}] {Context.State?.Name() ?? "Unknown"}";
+        public string Name => $"[{Context.Job ?? "Any"}] {Context.State?.Name() ?? "Unknown"}";
     }
 
     internal class Config : IPluginConfiguration

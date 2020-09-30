@@ -107,7 +107,7 @@ namespace ContextCommands
                 {
                     if (ImGui.Selectable(job.Abbreviation))
                     {
-                        selectedItem.Context.Job = job;
+                        selectedItem.Context.Job = job.Abbreviation;
                         dirty = true;
                     }
                 }

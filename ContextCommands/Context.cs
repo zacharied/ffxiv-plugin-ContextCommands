@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Dalamud.Game.ClientState;
 using Dalamud.Plugin;
-using Lumina.Excel.GeneratedSheets;
 
 namespace ContextCommands
 {
@@ -13,15 +12,17 @@ namespace ContextCommands
     {
         public const string Any = "Any";
 
-        public ClassJob? Job;
+        /// <summary>The job abbreviation, or null for any job</summary>
+        public string? Job;
         public XivState? State;
 
         public bool IsActive(DalamudPluginInterface pi)
         {
-            return State?.IsActive(pi) ?? false;
+            var playerJob = Job != null ? pi.ClientState.LocalPlayer.ClassJob.GameData.Abbreviation : null;
+            return (State?.IsActive(pi) ?? true) && Job == playerJob;
         }
 
-        public string DisplayJob => Job?.Abbreviation ?? Any;
+        public string DisplayJob => Job ?? Any;
         public string DisplayState => State?.Name() ?? Any;
     }
 
@@ -93,7 +94,7 @@ namespace ContextCommands
         /// </summary>
         public static bool IsActive(this XivState condition, DalamudPluginInterface pi)
         {
-            if (ConditionChecks.TryGetValue(condition, out Func<DalamudPluginInterface, bool> checkFunc))
+            if (ConditionChecks.TryGetValue(condition, out var checkFunc))
                 return checkFunc(pi);
 
             PluginLog.LogError($"No check function found for condition '{condition.ToString()}'");
