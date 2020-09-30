@@ -10,14 +10,14 @@ namespace ContextCommands
 {
     internal class Ui
     {
-        private class Constants
+        private static class Constants
         {
             public const int ListWidth = 230;
         }
 
-        private Plugin _plugin;
-        private DalamudPluginInterface _pi;
-        private Config _config;
+        private readonly Plugin _plugin;
+        private readonly DalamudPluginInterface _pi;
+        private readonly Config _config;
 
         private bool _visible = false;
         public bool Visible { get => _visible; set => _visible = value; }
