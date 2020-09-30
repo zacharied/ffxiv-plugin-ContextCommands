@@ -93,10 +93,19 @@ namespace ContextCommands
             if (ImGui.BeginCombo("Job##command-config-class", selectedItem.Context.DisplayJob))
             {
                 if (ImGui.Selectable(Context.Any))
+                {
                     selectedItem.Context.Job = null;
+                    dirty = true;
+                }
+
                 foreach (var job in _pi.Data.GetExcelSheet<ClassJob>())
+                {
                     if (ImGui.Selectable(job.Abbreviation))
+                    {
                         selectedItem.Context.Job = job;
+                        dirty = true;
+                    }
+                }
 
                 ImGui.EndCombo();
             }
