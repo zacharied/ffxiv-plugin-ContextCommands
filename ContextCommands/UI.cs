@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Dalamud.Plugin;
@@ -13,6 +14,7 @@ namespace ContextCommands
         private static class Constants
         {
             public const int ListWidth = 230;
+            public static readonly Vector2 TextboxSize = new Vector2(500, 150);
         }
 
         private readonly Plugin _plugin;
@@ -52,6 +54,8 @@ namespace ContextCommands
 
             if (_selectedItemIndex >= 0)
                 DrawCommandConfig(ref dirty, _config.Items[_selectedItemIndex]);
+
+            ImGui.End();
 
             if (dirty)
                 _pi.SavePluginConfig(_config);
@@ -134,10 +138,10 @@ namespace ContextCommands
             }
 
             ImGui.Text("On enter");
-            dirty |= ImGui.InputTextMultiline("##command-config-on-enter", ref selectedItem.Commands.OnEnterCommand, 4096, new Vector2(500, 150));
+            dirty |= ImGui.InputTextMultiline("##command-config-on-enter", ref selectedItem.Commands.OnEnterCommand, 4096, Constants.TextboxSize);
 
             ImGui.Text("On exit");
-            dirty |= ImGui.InputTextMultiline("##command-config-on-exit", ref selectedItem.Commands.OnExitCommand, 4096, new Vector2(500, 150));
+            dirty |= ImGui.InputTextMultiline("##command-config-on-exit", ref selectedItem.Commands.OnExitCommand, 4096, Constants.TextboxSize);
         }
 
         #region Plugin Interface
